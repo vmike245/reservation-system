@@ -1,0 +1,24 @@
+{
+  "name": "reservation-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vmike245/reservation-system.git"
+  },
+  "author": "Michael Vellequette",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vmike245/reservation-system/issues"
+  },
+  "homepage": "https://github.com/vmike245/reservation-system#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "moment": "^2.22.2"
+  }
+}
