@@ -8,6 +8,7 @@ Returns available campsites while preventing a gap as configured in the constant
 Run the following commands to get started
 ```bash
 git clone https://github.com/vmike245/reservation-system.git
+cd reservation-system
 npm install
 ```
 
