@@ -1,43 +1,26 @@
 const moment = require('moment');
 const filterCampsites = require('./campsiteFilter');
+const fs = require('fs')
 
-const fileContents = {
-  "search": {
-    "startDate": "2018-06-04",
-    "endDate": "2018-06-06"
-  },
-  "campsites": [
-    {
-      "id": 1,
-      "name": "Cozy Cabin"
-    },
-    {
-      "id": 2,
-      "name": "Comfy Cabin"
-    },
-    {
-      "id": 3,
-      "name": "Rustic Cabin"
-    },
-    {
-      "id": 4,
-      "name": "Rickety Cabin"
-    },
-    {
-      "id": 5,
-      "name": "Cabin in the Woods"
+const fileName = process.argv[2]
+
+fs.readFile(fileName, (error, data) => {
+  if (error) throw error;
+  try {
+    const { search, campsites, reservations } = JSON.parse(data);
+    if (!search) {
+      return console.warn('The search key could not be found in the input file.')
     }
-  ],
-  "reservations": [
-    {"campsiteId": 1, "startDate": "2018-06-01", "endDate": "2018-06-03"},
-    {"campsiteId": 1, "startDate": "2018-06-08", "endDate": "2018-06-10"},
-    {"campsiteId": 2, "startDate": "2018-06-01", "endDate": "2018-06-01"},
-    {"campsiteId": 2, "startDate": "2018-06-02", "endDate": "2018-06-03"},
-    {"campsiteId": 2, "startDate": "2018-06-07", "endDate": "2018-06-09"},
-    {"campsiteId": 3, "startDate": "2018-06-01", "endDate": "2018-06-02"},
-    {"campsiteId": 3, "startDate": "2018-06-08", "endDate": "2018-06-09"},
-    {"campsiteId": 4, "startDate": "2018-06-07", "endDate": "2018-06-10"},
-  ]
-}
-
-console.log(filterCampsites(fileContents.search, fileContents.campsites, fileContents.reservations))
+    if (!campsites) {
+      return console.warn('The campsites key could not be found in the input file.')
+    }
+    if (!reservations) {
+      return console.warn('The reservations key could not be found in the input file.')
+    }
+    console.log(filterCampsites(search, campsites, reservations));
+  }
+  catch (error) {
+    console.warn('The input file must be a valid JSON object');
+    console.log(error);
+  }
+})
