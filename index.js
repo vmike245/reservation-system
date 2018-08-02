@@ -1,8 +1,8 @@
 const moment = require('moment');
 const filterCampsites = require('./campsiteFilter');
-const fs = require('fs')
+const fs = require('fs');
 
-const fileName = process.argv[2]
+const fileName = process.argv[2];
 
 fs.readFile(fileName, (error, data) => {
   if (error) throw error;
