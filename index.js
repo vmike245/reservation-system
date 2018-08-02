@@ -17,7 +17,7 @@ fs.readFile(fileName, (error, data) => {
     if (!reservations) {
       return console.warn('The reservations key could not be found in the input file.')
     }
-    console.log(filterCampsites(search, campsites, reservations));
+    filterCampsites(search, campsites, reservations).map((campsite) => console.log(campsite.name));
   }
   catch (error) {
     console.warn('The input file must be a valid JSON object');
